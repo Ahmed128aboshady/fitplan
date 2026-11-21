@@ -1,0 +1,211 @@
+<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#f7f8f2"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="خطتي"><meta name="description" content="خطتي: رفيق يومك للتمارين المنزلية، التغذية، المياه ومتابعة التقدم."><title>خطتي — خطوة صغيرة، فرق كبير</title><link rel="manifest" href="manifest.json"><link rel="icon" href="icon.svg" type="image/svg+xml"><link rel="stylesheet" href="styles.css"></head><body>
+
+<a class="skip-link" href="#main">انتقل للمحتوى</a><header class="app-header"><a class="brand" href="#today" aria-label="خطتي، الصفحة الرئيسية" onclick="go('today');return false"><span class="brand-mark"><svg class="icon " aria-hidden="true" viewBox="0 0 24 24"><path d="M19 4C10 3 4 7 5 14c1 5 8 6 11 1 2-3 3-7 3-11Z M5 21c0-7 5-10 10-13"/></svg></span><span><b>خطتي<span style="color:#9da97b">.</span></b><small>FITPLAN • EVERYDAY BETTER</small></span></a><div class="header-end"><span class="local-badge">خطوة صغيرة، فرق كبير</span><button class="avatar" onclick="openProfile()" aria-label="تخصيص أهدافي"><svg class="icon " aria-hidden="true" viewBox="0 0 24 24"><path d="M16 7a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z M4 21v-2a8 8 0 0 1 16 0v2"/></svg></button></div></header>
+
+<main id="main"><div class="page-heading" id="home-heading"><div><span class="eyebrow">YOUR DAILY BALANCE</span><h1 id="hello">يوم جديد، خطوة أحسن</h1><p>مش لازم تغيّر كل حاجة. ابدأ بخطوة النهارده.</p></div><div class="date-badge"><svg class="icon " aria-hidden="true" viewBox="0 0 24 24"><path d="M5 5h14a2 2 0 0 1 2 2v13H3V7a2 2 0 0 1 2-2Z M7 3v4 M17 3v4 M3 10h18 M8 14h2 M14 14h2 M8 17h2"/></svg><span id="today-date"></span></div></div>
+<!-- ============ TODAY ============ -->
+<section id="s-today" class="active" aria-label="ملخص اليوم"><div class="section-title"><h2>خطتك الأسبوع ده</h2><button class="text-btn" onclick="go('schedule')">عرض الجدول <svg class="icon " aria-hidden="true" viewBox="0 0 24 24"><path d="M19 12H5 m6-6-6 6 6 6"/></svg></button></div><div class="week-strip" id="today-week"></div><div class="dashboard"><div id="today-hero" class="card hero"></div><div class="card daily-score"><div class="row between"><span class="card-label"><span class="icon-tile orange"><svg class="icon " aria-hidden="true" viewBox="0 0 24 24"><path d="m12 3 2.5 6.5L21 12l-6.5 2.5L12 21l-2.5-6.5L3 12l6.5-2.5Z"/></svg></span>كل خطوة بتفرق</span><span class="tag">إنجاز اليوم</span></div><div class="score-layout"><div class="score-ring"><svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="50" fill="none" stroke="#edf1e6" stroke-width="8"/><circle id="score-ring" cx="60" cy="60" r="50" fill="none" stroke="#8da272" stroke-width="8" stroke-linecap="round" stroke-dasharray="314.16" stroke-dashoffset="314.16"/></svg><div class="center"><b id="score-txt">0%</b><small>من هدفك اليومي</small></div></div><div class="score-details"><p id="score-message">بداية جديدة مستنياك</p><small id="score-detail">كل عادة صغيرة بتقرّبك لهدفك.</small><div class="score-legend"><i></i><span id="score-count">٠ مهام مكتملة</span></div></div></div><div class="progress" hidden><i id="score-bar"></i></div></div><div class="card" id="steps-card"></div><div class="card mini-water"><div class="row between"><span class="card-label"><span class="icon-tile blue"><svg class="icon " aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3C9 7 5 11 5 15a7 7 0 0 0 14 0c0-4-4-8-7-12Z M8 15a4 4 0 0 0 4 4"/></svg></span>وقت تشرب مياه</span><button class="text-btn" onclick="go('water')">التفاصيل <svg class="icon " aria-hidden="true" viewBox="0 0 24 24"><path d="M19 12H5 m6-6-6 6 6 6"/></svg></button></div><div class="metric-row"><span class="water-value" id="mini-water-value">0</span><span class="water-sub" id="mini-water-txt"></span></div><div class="water-drops" id="mini-water-drops"></div><div class="progress water"><i id="mini-water-bar"></i></div><div class="row" style="margin-top:17px"><button class="btn blue" onclick="addWater(S.settings.cup)"><svg class="icon " aria-hidden="true" viewBox="0 0 24 24"><path d="M12 5v14 M5 12h14"/></svg>كوب مياه <span class="cupml"></span> مل</button><button class="btn sec sm" onclick="addWater(-S.settings.cup)" aria-label="التراجع عن كوب مياه"><svg class="icon " aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14"/></svg></button></div></div><div class="card today-tasks"><div class="row between"><span class="card-label"><span class="icon-tile"><svg class="icon " aria-hidden="true" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg></span>عادات بسيطة، يوم أحسن</span><span class="mut" id="tasks-count"></span></div><div id="tasks" style="margin-top:10px"></div></div></div><p class="footnote">على مهلك، الاستمرار أهم من الكمال.</p></section>
+
+<!-- ============ WORKOUT ============ -->
+<section id="s-workout" aria-label="حركة تناسب يومك"><div class="section-intro"><span class="eyebrow">MOVE WITH PURPOSE</span><h2 tabindex="-1">حركة تناسب يومك</h2><p>٣ خطط منزلية، وخطوة بخطوة لحد آخر تمرين.</p></div>
+  <div class="seg" id="wo-seg"></div>
+  <div class="card" id="wo-card"></div>
+  <div class="card">
+    <h2><svg class="icon " aria-hidden="true" viewBox="0 0 24 24"><path d="M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z M12 2v2 M12 20v2 M2 12h2 M20 12h2 M5 5l1 1 M18 18l1 1 M19 5l-1 1 M6 18l-1 1"/></svg>قبل ما تبدأ · الإحماء</h2>
+    <div id="warm-list"></div>
+  </div>
+  <div class="card">
+    <h2><svg class="icon " aria-hidden="true" viewBox="0 0 24 24"><path d="M19 4C10 3 4 7 5 14c1 5 8 6 11 1 2-3 3-7 3-11Z M5 21c0-7 5-10 10-13"/></svg>بعد التمرين · الإطالات</h2>
+    <div id="stretch-list"></div>
+  </div>
+  <div class="card">
+    <h2><svg class="icon " aria-hidden="true" viewBox="0 0 24 24"><path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6Z m-4 9 3 3 5-6"/></svg>خلي بالك من جسمك</h2>
+    <div class="mut" style="font-size:14px;line-height:2">
+      • ممنوع القفز في الشهر الأول.<br>
+      • لو حسيت بألم حاد (مش تعب عضلي) وقف التمرين فوراً.<br>
+      • في السكوات: الركبة ما تتعداش أطراف صوابع الرجل.<br>
+      • خلي البطن مشدودة وأسفل الظهر ثابت طول الوقت.<br>
+      • لو الظهر أو الركبة بتوجعك النهاردة: اعمل المشي والإطالات بس.
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOD ============ -->
+<section id="s-food" aria-label="أكل متوازن، من غير تعقيد"><div class="section-intro"><span class="eyebrow">EAT WELL, FEEL GOOD</span><h2 tabindex="-1">أكل متوازن، من غير تعقيد</h2><p>اختار وجبتك وسجّل يومك بسهولة.</p></div>
+  <div class="card hero" id="food-hero"></div>
+  <div id="meals"></div>
+  <div class="card">
+    <h2><svg class="icon " aria-hidden="true" viewBox="0 0 24 24"><path d="M12 5v14 M5 12h14"/></svg>أضف وجبة أو سناك</h2>
+    <div class="row">
+      <input aria-label="اسم الوجبة الإضافية" maxlength="100" id="ex-name" class="inp" placeholder="اسم الأكلة" style="flex:2">
+      <input aria-label="سعرات الوجبة الإضافية" min="1" max="10000" id="ex-kcal" class="inp" type="number" inputmode="numeric" placeholder="سعرات" style="flex:1">
+      <button class="btn sm" aria-label="تسجيل الوجبة" onclick="addExtra()"><svg class="icon " aria-hidden="true" viewBox="0 0 24 24"><path d="M12 5v14 M5 12h14"/></svg></button>
+    </div>
+    <div class="chips" style="margin-top:10px" id="quick-extra"></div>
+    <div id="extra-list" style="margin-top:8px"></div>
+  </div>
+  <div class="card">
+    <h2><svg class="icon " aria-hidden="true" viewBox="0 0 24 24"><path d="M20 7v5h-5 M4 17v-5h5 M20 12a8 8 0 0 0-14-5 M4 12a8 8 0 0 0 14 5"/></svg>اختيارات أبسط ليومك</h2>
+    <div id="swaps"></div>
+  </div>
+  <div class="card">
+    <h2><svg class="icon " aria-hidden="true" viewBox="0 0 24 24"><path d="M19 4C10 3 4 7 5 14c1 5 8 6 11 1 2-3 3-7 3-11Z M5 21c0-7 5-10 10-13"/></svg>عادات للأكل المتوازن</h2>
+    <div class="mut" style="font-size:14px;line-height:2">
+      • <b>وجبة حرة مرة في الأسبوع</b> (كشري، بيتزا، حواوشي...) من غير إحساس بالذنب.<br>
+      • الشاي والقهوة بدون سكر أو بمحلي دايت.<br>
+      • كوبين ماء قبل كل وجبة بـ 20 دقيقة.<br>
+      • كُل ببطء — الشبع بيوصل للمخ بعد 20 دقيقة.<br>
+      • ممنوع النوم بعد الأكل على طول.
+    </div>
+  </div>
+</section>
+
+<!-- ============ WATER ============ -->
+<section id="s-water" aria-label="خليك منتعش"><div class="section-intro"><span class="eyebrow">A LITTLE SIP, A BIG DIFFERENCE</span><h2 tabindex="-1">خليك منتعش</h2><p>تابع شرب المياه، كوب ورا كوب.</p></div>
+  <div class="card water-head"><h2><svg class="icon " aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3C9 7 5 11 5 15a7 7 0 0 0 14 0c0-4-4-8-7-12Z M8 15a4 4 0 0 0 4 4"/></svg>كل كوب بيتحسب</h2><p class="mut">تسجيل المياه النهارده</p>
+    <div class="ring">
+      <svg width="170" height="170" viewBox="0 0 120 120">
+        <circle cx="60" cy="60" r="52" fill="none" stroke="#e6eff0" stroke-width="10"/>
+        <circle id="ring-fg" cx="60" cy="60" r="52" fill="none" stroke="url(#wg)" stroke-width="10" stroke-linecap="round" stroke-dasharray="326.7" stroke-dashoffset="326.7" style="transition:stroke-dashoffset .5s"/>
+        <defs><linearGradient id="wg"><stop offset="0" stop-color="#397e95"/><stop offset="1" stop-color="#9cc4ce"/></linearGradient></defs>
+      </svg>
+      <div class="c"><div><b id="w-amount">0</b><span class="mut" id="w-goal"></span></div></div>
+    </div>
+    <p id="w-msg" class="mut"></p>
+    <div class="cups" id="cups"></div>
+    <div class="grid3">
+      <button class="btn blue" onclick="addWater(250)">+ ٢٥٠ مل</button>
+      <button class="btn blue" onclick="addWater(500)">+ ٥٠٠ مل</button>
+      <button class="btn sec" onclick="addWater(-250)">− ٢٥٠ مل</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2><svg class="icon " aria-hidden="true" viewBox="0 0 24 24"><path d="M4 3v17h17 M8 15l4-4 4 2 5-7"/></svg>المياه في آخر ٧ أيام</h2>
+    <div class="bars" id="w-bars"></div>
+  </div>
+
+  <div class="card">
+    <h2><svg class="icon " aria-hidden="true" viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 8-3 8-3 10h18c0-2-3-2-3-10 M10 21h4"/></svg>تذكير لطيف بالمياه</h2>
+    <div class="check" id="remind-toggle" onclick="toggleRemind()">
+      <div class="box"></div><div class="lbl">فعّل التذكير</div>
+    </div>
+    <div class="row" style="margin-top:8px">
+      <span class="mut">كل</span>
+      <div class="chips" id="remind-chips"></div>
+    </div>
+    <div style="margin-top:12px">
+      <button class="btn sec sm" onclick="if(window.AndroidApp&&AndroidApp.testNotification){AndroidApp.testNotification();toast('🔔 اتبعت إشعار تجريبي')}else{notify('💧 وقت شرب الماء!','اشرب كوب ماء دلوقتي')}">🔔 جرّب إشعار الآن</button>
+    </div>
+    <p class="mut" id="remind-note" style="margin-top:10px">في نسخة الويب، التذكير يحتاج التطبيق مفتوحًا وإذن الإشعارات. في نسخة أندرويد، يمكن إرسال التذكيرات في الخلفية حسب إعدادات الجهاز.</p>
+  </div>
+
+  <div class="card">
+    <h2><svg class="icon " aria-hidden="true" viewBox="0 0 24 24"><path d="M4 7h16 M4 17h16 M8 4v6 M16 14v6"/></svg>على قد احتياجك</h2>
+    <p class="mut">الهدف اليومي (مل)</p>
+    <div class="chips" id="goal-chips" style="margin:6px 0 12px"></div>
+    <p class="mut">حجم الكوب (مل)</p>
+    <div class="chips" id="cup-chips" style="margin-top:6px"></div>
+  </div>
+</section>
+
+<!-- ============ SCHEDULE ============ -->
+<section id="s-schedule" aria-label="وقتك لنفسك"><div class="section-intro"><span class="eyebrow">MAKE ROOM FOR YOU</span><h2 tabindex="-1">وقتك لنفسك</h2><p>رتّب أيام الحركة والراحة على مزاج يومك.</p></div>
+  <div class="card">
+    <div class="row between" style="margin-bottom:10px">
+      <button class="btn sec sm" aria-label="الأسبوع السابق" onclick="weekOffset--;renderSchedule()">→</button>
+      <h2 style="margin:0" id="week-title"></h2>
+      <button class="btn sec sm" aria-label="الأسبوع التالي" onclick="weekOffset++;renderSchedule()">←</button>
+    </div>
+    <div class="week" id="week"></div>
+    <p class="mut" style="margin-top:10px">🏋️ تمرين &nbsp; ✅ اتعمل &nbsp; 🚶 مشي &nbsp; 💧 الماء كامل</p>
+  </div>
+
+  <div class="card">
+    <h2><svg class="icon " aria-hidden="true" viewBox="0 0 24 24"><path d="M5 5h14a2 2 0 0 1 2 2v13H3V7a2 2 0 0 1 2-2Z M7 3v4 M17 3v4 M3 10h18 M8 14h2 M14 14h2 M8 17h2"/></svg>اختار ٣ أيام للحركة</h2>
+    <div class="chips" id="day-chips"></div>
+    <p class="mut" style="margin-top:8px">الأفضل أيام متباعدة عشان العضلات ترتاح.</p>
+  </div>
+
+  <div class="card">
+    <h2><svg class="icon " aria-hidden="true" viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z M12 7v5l3 2"/></svg>مساحة لكل عادة</h2>
+    <div class="tl" id="timeline"></div>
+  </div>
+</section>
+
+<!-- ============ PROGRESS ============ -->
+<section id="s-progress" aria-label="شوف خطواتك بتفرق"><div class="section-intro"><span class="eyebrow">PROGRESS, AT YOUR PACE</span><h2 tabindex="-1">شوف خطواتك بتفرق</h2><p>تقدّمك في مكان واحد، من أول يوم.</p></div>
+  <div class="grid2 progress-summary" style="margin-bottom:16px">
+    <div class="stat"><b id="st-wo">0</b><span>تمارين مكتملة</span></div>
+    <div class="stat"><b id="st-streak">0</b><span>أيام استمرار</span></div>
+    <div class="stat"><b id="st-water">0</b><span>متوسط الماء (لتر)</span></div>
+    <div class="stat"><b id="st-walk">0</b><span>أيام مشي</span></div>
+  </div>
+
+  <div class="card">
+    <h2><svg class="icon " aria-hidden="true" viewBox="0 0 24 24"><path d="M8 3c-3-1-5 6-4 9 1 3 5 2 6-1 1-2 0-7-2-8Z M5 16l3 1-1 4-3-1Z M17 6c3-1 5 6 4 9-1 3-5 2-6-1-1-2 0-7 2-8Z M17 19l3-1 1 3-3 1Z"/></svg>خطواتك في آخر ٧ أيام</h2>
+    <div class="bars" id="steps-bars"></div>
+  </div>
+
+  <div class="card">
+    <h2><svg class="icon " aria-hidden="true" viewBox="0 0 24 24"><path d="M4 5h16v15H4Z M8 9a5 5 0 0 1 8 0 M12 9l2-2"/></svg>متابعة الوزن</h2>
+    <div class="row">
+      <input aria-label="الوزن بالكيلوجرام" id="w-in" class="inp" type="number" step="0.1" inputmode="decimal" placeholder="وزنك النهاردة (كجم)">
+      <button class="btn sm" onclick="addWeight()">حفظ</button>
+    </div>
+    <p class="mut" style="margin-top:8px">اتوزن مرة في الأسبوع، الصبح على الريق، بعد الحمام.</p>
+    <div id="w-chart" style="margin-top:12px"></div>
+    <div id="w-list"></div>
+  </div>
+
+  <div class="card">
+    <h2><svg class="icon " aria-hidden="true" viewBox="0 0 24 24"><path d="m3 17 14-14 4 4L7 21Z M12 8l3 3 M8 12l3 3"/></svg>محيط الوسط</h2>
+    <div class="row">
+      <input aria-label="محيط الوسط بالسنتيمتر" id="waist-in" class="inp" type="number" step="0.5" inputmode="decimal" placeholder="محيط الوسط عند السُرّة (سم)">
+      <button class="btn sm" onclick="addWaist()">حفظ</button>
+    </div>
+    <p class="mut" style="margin-top:8px">ده أهم من الميزان! الكرش بيبان في المقاس قبل الوزن.</p>
+    <div id="waist-list"></div>
+  </div>
+
+  <div class="card">
+    <h2><svg class="icon " aria-hidden="true" viewBox="0 0 24 24"><path d="M16 7a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z M4 21v-2a8 8 0 0 1 16 0v2"/></svg>بياناتك وأهدافك</h2>
+    <div class="grid2">
+      <div><p class="mut">الطول (سم)</p><input aria-label="الطول بالسنتيمتر" min="100" max="250" id="h-in" class="inp" type="number" onchange="setHeight(this.value)"></div>
+      <div><p class="mut">مؤشر كتلة الجسم</p><div class="inp" id="bmi" style="text-align:center">–</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="export-actions"><button class="btn sec" onclick="openProfile()"><svg class="icon " aria-hidden="true" viewBox="0 0 24 24"><path d="M4 7h16 M4 17h16 M8 4v6 M16 14v6"/></svg>تخصيص أهدافي</button><button class="btn sec" onclick="if(window.AndroidApp&&AndroidApp.checkForUpdate){AndroidApp.checkForUpdate()}else{toast('متاح في نسخة الأندرويد')}"><svg class="icon " aria-hidden="true" viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-2.64-6.36 M21 3v6h-6"/></svg>فحص التحديثات</button><button class="btn sec danger" onclick="resetAll()"><svg class="icon " aria-hidden="true" viewBox="0 0 24 24"><path d="M4 6h16 M9 6V3h6v3 M6 6l1 15h10l1-15 M10 10v7 M14 10v7"/></svg>مسح البيانات</button></div>
+  </div>
+</section>
+</main>
+
+<nav id="nav" class="bottom-nav" aria-label="التنقل الرئيسي"><button data-s="today" class="on" aria-current="page"><span class="i"><svg class="icon " aria-hidden="true" viewBox="0 0 24 24"><path d="m3 10 9-7 9 7 M5 9v11h5v-6h4v6h5V9"/></svg></span><span>اليوم</span></button><button data-s="workout" ><span class="i"><svg class="icon " aria-hidden="true" viewBox="0 0 24 24"><path d="m6 4-2 2 14 14 2-2 M4 4l-2 2 4 4 2-2 M16 16l-2 2 4 4 2-2 M14 4l6 6 M16 2l6 6 M2 16l6 6 M4 14l6 6"/></svg></span><span>تماريني</span></button><button data-s="food" ><span class="i"><svg class="icon " aria-hidden="true" viewBox="0 0 24 24"><path d="M5 3v6a3 3 0 0 0 6 0V3 M8 3v18 M17 3v9h4V3c-3 0-4 4-4 9 M21 12v9"/></svg></span><span>تغذيتي</span></button><button data-s="water" ><span class="i"><svg class="icon " aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3C9 7 5 11 5 15a7 7 0 0 0 14 0c0-4-4-8-7-12Z M8 15a4 4 0 0 0 4 4"/></svg></span><span>المياه</span></button><button data-s="schedule" ><span class="i"><svg class="icon " aria-hidden="true" viewBox="0 0 24 24"><path d="M5 5h14a2 2 0 0 1 2 2v13H3V7a2 2 0 0 1 2-2Z M7 3v4 M17 3v4 M3 10h18 M8 14h2 M14 14h2 M8 17h2"/></svg></span><span>جدولي</span></button><button data-s="progress" ><span class="i"><svg class="icon " aria-hidden="true" viewBox="0 0 24 24"><path d="M4 3v17h17 M8 15l4-4 4 2 5-7"/></svg></span><span>تقدّمي</span></button></nav>
+
+<!-- Timer -->
+<div id="timer" role="dialog" aria-modal="true" aria-label="جلسة التمرين">
+  <div class="row between">
+    <button class="btn sec sm" onclick="closeTimer()">✕ خروج</button>
+    <span class="tag" id="t-label"></span>
+    <button class="btn sec sm" aria-label="تبديل صوت التمرين" id="t-sound" onclick="toggleSound()">🔊</button>
+  </div>
+  <div class="progress" style="margin-top:12px"><i id="t-prog"></i></div>
+  <div class="tbig">
+    <div class="em" id="t-em"></div>
+    <h2 id="t-name"></h2>
+    <p class="mut" id="t-desc" style="max-width:340px"></p>
+    <div class="num" id="t-num">00</div>
+    <p class="mut" id="t-next"></p>
+  </div>
+  <div class="tctl">
+    <button aria-label="التمرين التالي" onclick="tStep(1)">⏭</button>
+    <button class="main" id="t-play" onclick="tToggle()">إيقاف مؤقت</button>
+    <button aria-label="التمرين السابق" onclick="tStep(-1)">⏮</button>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<div class="modal-backdrop" id="profile-modal" hidden><div class="dialog" role="dialog" aria-modal="true" aria-labelledby="profile-title"><div class="row between"><h2 id="profile-title">أهداف على مقاسك</h2><button class="icon-button" onclick="closeModal('profile-modal')" aria-label="إغلاق"><svg class="icon " aria-hidden="true" viewBox="0 0 24 24"><path d="m6 6 12 12 M6 18 18 6"/></svg></button></div><p class="mut">ظبّط الأهداف المناسبة لك. تقدر ترجع تغيّرها في أي وقت.</p><form id="profile-form" onsubmit="saveProfile(event)"><label class="field" for="profile-name">نناديك بإيه؟<input class="inp" id="profile-name" maxlength="30" placeholder="اسمك (اختياري)" autocomplete="given-name"></label><label class="field" for="profile-steps">هدف الخطوات اليومي<input class="inp" id="profile-steps" type="number" min="500" max="50000" step="100" required inputmode="numeric"></label><label class="field" for="profile-kcal">هدف السعرات اليومي<input class="inp" id="profile-kcal" type="number" min="500" max="10000" step="1" required inputmode="numeric"></label><button class="btn" type="submit">حفظ أهدافي <svg class="icon " aria-hidden="true" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg></button></form></div></div><div class="modal-backdrop" id="confirm-modal" hidden><div class="dialog" role="dialog" aria-modal="true" aria-labelledby="confirm-title"><h2 id="confirm-title"></h2><p class="mut" id="confirm-message"></p><div class="dialog-actions"><button class="btn" id="confirm-action">تأكيد</button><button class="btn sec" onclick="closeModal('confirm-modal')">رجوع</button></div></div></div><script src="app.js"></script></body></html>

@@ -1,0 +1,21 @@
+{
+  "name": "خطتي — FitPlan",
+  "short_name": "خطتي",
+  "description": "رفيق يومك للحركة والتغذية والمياه ومتابعة التقدم",
+  "lang": "ar",
+  "dir": "rtl",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f7f8f2",
+  "theme_color": "#f7f8f2",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
